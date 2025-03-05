@@ -1,0 +1,1 @@
+       npm install express bcrypt jsonwebtoken @supabase/supabase-js cors dotenv
