@@ -1,46 +1,68 @@
-Thank you for the detailed description of your project and the requirements for the new "Krishna" project. It sounds like an exciting endeavor to rebuild the R&D project with a more systematic approach and advanced techniques. Here’s a structured plan for how we can proceed with the development of the Krishna project:
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
 
-### Project Structure
-1. **Folder Structure**:
-   - Create a main project folder named `krishna-project`.
-   - Inside this folder, create two subfolders: `backend` and `frontend`.
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
 
-### Step-by-Step Plan
-1. **Set Up the Backend**:
-   - Initialize a Node.js project in the `backend` folder.
-   - Set up Express.js for routing.
-   - Implement user authentication using JWT and bcrypt.
-   - Set up Supabase for database management (PostgreSQL).
-   - Create routes for admin and faculty functionalities.
-   - Implement dynamic data fetching for faculties and categories.
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
-2. **Set Up the Frontend**:
-   - Initialize a React project in the `frontend` folder.
-   - Set up routing using React Router.
-   - Create components for the info page, login, admin dashboard, faculty dashboard, and dynamic data display.
-   - Use the existing styles from the R&D project and enhance them if necessary.
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
 
-3. **Implement Authentication**:
-   - Create login components for both admin and faculty.
-   - Implement OAuth for Google login.
-   - Ensure secure password storage and authentication flow.
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
 
-4. **Dynamic Component Rendering**:
-   - Create a generic component for displaying faculty and category data.
-   - Use mapping to dynamically render data instead of creating separate components for each faculty/category.
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
 
-5. **Testing and Validation**:
-   - Test each functionality as it is implemented.
-   - Ensure that all existing functionalities from the R&D project are intact.
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
 
-6. **Deployment**:
-   - Prepare the project for deployment (if applicable).
-
-### Code Style
-Before we start generating code, please share the specific files that demonstrate the coding style you want to maintain. This will help ensure that the code generated for the Krishna project aligns with your expectations.
-
-### Next Steps
-1. **Share the Code Samples**: Please provide the React, Node, and authentication technique files that exemplify the coding style you prefer.
-2. **Begin with Backend Setup**: Once I have the code samples, we can start with the backend setup, focusing on user authentication as the first functionality.
-
-Let me know when you're ready to proceed or if you have any additional instructions!
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}

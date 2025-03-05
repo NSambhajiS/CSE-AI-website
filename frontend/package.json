@@ -1,36 +1,28 @@
-It sounds like you have a well-defined plan for your project, and I appreciate the detailed description of both the existing R&D project and your vision for the new Krishna project. Here’s a structured approach to how we can proceed with the rebuild:
-
-### Step-by-Step Plan for Rebuilding the Project
-
-1. **Project Structure Setup**:
-   - Create a new project folder named `krishna-project`.
-   - Inside this folder, create two subfolders: `backend` and `frontend`.
-
-2. **Backend Development**:
-   - Set up a Node.js server using Express.
-   - Implement user authentication using JWT and bcrypt for password hashing.
-   - Set up routes for admin and faculty logins, and create endpoints for CRUD operations on faculties, categories, and research data.
-   - Integrate Supabase for database management (PostgreSQL).
-
-3. **Frontend Development**:
-   - Set up a React application inside the `frontend` folder.
-   - Use React Router for navigation between different pages (info page, admin dashboard, faculty dashboard).
-   - Create reusable components for displaying faculty and category data dynamically.
-   - Ensure that the UI styles from the original project are preserved or enhanced.
-
-4. **Dynamic Data Handling**:
-   - Implement functionality to fetch and display data dynamically based on user interactions (e.g., selecting a faculty or category).
-   - Use mapping techniques to avoid creating separate components for each faculty or category.
-
-5. **Testing and Validation**:
-   - After implementing each functionality, test it thoroughly to ensure it works as expected.
-   - Validate user authentication and data handling.
-
-6. **Iterative Development**:
-   - We will proceed one functionality at a time, as you suggested. After implementing each feature, we will review and test it before moving on to the next.
-
-### Initial Setup
-
-Before we start coding, please share the style of code writing you want me to follow for React, Node, and authentication techniques. Once I have that, we can begin with the first functionality, which I suggest could be setting up the project structure and the backend server.
-
-Let me know when you're ready to proceed or if you have any additional instructions!
+{
+  "name": "frontend",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-router-dom": "^7.2.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.21.0",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "@vitejs/plugin-react": "^4.3.4",
+    "eslint": "^9.21.0",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "globals": "^15.15.0",
+    "vite": "^6.2.0"
+  }
+}
