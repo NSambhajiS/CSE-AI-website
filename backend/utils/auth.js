@@ -1,107 +1,81 @@
-// filepath: /krishna-project/backend/utils/auth.js
 import passport from 'passport';
 import { Strategy as LocalStrategy } from 'passport-local';
 import bcrypt from 'bcrypt';
 import supabase from './db.js';
 
 const initializePassport = () => {
+  // Admin Login Strategy
   passport.use(
     'admin-local',
-    new LocalStrategy(async (username, password, done) => {
+    new LocalStrategy({ usernameField: 'email' }, async (email, password, done) => {
       try {
-        const { data: admins, error } = await supabase
+        const { data: admin, error } = await supabase
           .from('admins')
           .select('*')
-          .eq('email', username);
+          .eq('email', email)
+          .single();
 
-        if (error) {
-          return done(error);
-        }
-
-        if (admins.length === 0) {
-          return done(null, false, { message: 'No admin with that email' });
-        }
-
-        const admin = admins[0];
+        if (error || !admin) return done(null, false, { message: 'Invalid email or password' });
 
         const isMatch = await bcrypt.compare(password, admin.password);
+        if (!isMatch) return done(null, false, { message: 'Invalid email or password' });
 
-        if (isMatch) {
-          return done(null, admin);
-        } else {
-          return done(null, false, { message: 'Password incorrect' });
-        }
+        return done(null, admin);
       } catch (err) {
         return done(err);
       }
     })
   );
 
+  // Faculty Login Strategy
   passport.use(
     'faculty-local',
-    new LocalStrategy(async (username, password, done) => {
+    new LocalStrategy({ usernameField: 'email' }, async (email, password, done) => {
       try {
-        const { data: faculties, error } = await supabase
+        const { data: faculty, error } = await supabase
           .from('faculties')
           .select('*')
-          .eq('email', username);
+          .eq('email', email)
+          .single();
 
-        if (error) {
-          return done(error);
-        }
-
-        if (faculties.length === 0) {
-          return done(null, false, { message: 'No faculty with that email' });
-        }
-
-        const faculty = faculties[0];
+        if (error || !faculty) return done(null, false, { message: 'Invalid email or password' });
 
         const isMatch = await bcrypt.compare(password, faculty.password);
+        if (!isMatch) return done(null, false, { message: 'Invalid email or password' });
 
-        if (isMatch) {
-          return done(null, faculty);
-        } else {
-          return done(null, false, { message: 'Password incorrect' });
-        }
+        return done(null, faculty);
       } catch (err) {
         return done(err);
       }
     })
   );
 
+  // Serialize User
   passport.serializeUser((user, done) => {
     done(null, user.id);
   });
 
+  // Deserialize User
   passport.deserializeUser(async (id, done) => {
     try {
-      const { data: admins, error: adminError } = await supabase
+      const { data: user, error } = await supabase
         .from('admins')
         .select('*')
-        .eq('id', id);
+        .eq('id', id)
+        .single();
 
-      if (adminError) {
-        return done(adminError);
+      if (error) {
+        const { data: faculty, error: facultyError } = await supabase
+          .from('faculties')
+          .select('*')
+          .eq('id', id)
+          .single();
+
+        if (facultyError || !faculty) return done(null, false);
+        return done(null, faculty);
       }
 
-      if (admins.length > 0) {
-        return done(null, admins[0]);
-      }
-
-      const { data: faculties, error: facultyError } = await supabase
-        .from('faculties')
-        .select('*')
-        .eq('id', id);
-
-      if (facultyError) {
-        return done(facultyError);
-      }
-
-      if (faculties.length > 0) {
-        return done(null, faculties[0]);
-      }
-
-      return done(null, false);
+      return done(null, user);
     } catch (err) {
       done(err);
     }
