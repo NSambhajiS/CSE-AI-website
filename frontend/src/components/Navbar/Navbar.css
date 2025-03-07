@@ -3,6 +3,7 @@
     height: auto;
 }
 
+/* Navbar Styling */
 .navbar {
     width: 100%;
     background: #2d2d32; /* Navbar background */
@@ -17,16 +18,21 @@
     z-index: 1000;
 }
 
+/* Navigation Links */
 .nav-links {
     display: flex;
+    align-items: center;
     list-style: none;
     padding-right: 20px;
 }
 
 .nav-links li {
-    margin: 0 15px;
+    display: inline-block;
+    margin: 5px 20px;
+    font-size: 16px;
 }
 
+/* General Link Styles */
 .nav-links li a {
     text-decoration: none;
     color: white;
@@ -38,58 +44,69 @@
     color: #f4a261;
 }
 
-/* Admin and Faculty Login Button Styling */
+/* Buttons */
 .btn {
     padding: 8px 12px;
-    border-radius: 20px; /* Increased to make buttons rounder */
+    border-radius: 20px;
     font-weight: bold;
     text-align: center;
+    display: inline-block;
+    border: 2px solid white;
+    transition: 0.3s ease-in-out;
+    background: white;   /* Button background */
+    color: #2d2d32!important;      /* Button text color */
 }
 
-/* Admin Login Button */
-.nav-links li:nth-last-child(2) .btn {
-    background: white; /* Opposite of navbar color */
-    color: #2d2d32; /* Same as navbar background */
-}
-
-/* Faculty Login Button */
-.nav-links li:last-child .btn {
-    background: white; /* Opposite of navbar color */
-    color: #2d2d32; /* Same as navbar background */
-}
-
-/* Button Hover Effect */
 .btn:hover {
     background: #e76f51;
     color: white;
+    border-color: #e76f51;
+}
+
+/* Dark Navbar Effect */
+.dark-nav {
+    background: #2d2d32;
+    transition: 0.5s;
 }
 
 /* Menu Icon */
 .menu-icon {
     display: none;
     cursor: pointer;
-    width: 35px;
-    margin-right: 20px; /* Increase this value */
+    width: 30px;
+    margin-right: 20px;
 }
 
-/* Mobile View */
+/* Responsive Adjustments */
+@media (max-width: 1000px) {
+    .logo {
+        width: 140px;
+    }
+
+    .nav-links li {
+        margin: 10px 15px;
+    }
+}
+
 @media (max-width: 937px) {
-    .menu-icon {
-        display: block;
-        margin-right: 30px; /* Increased spacing */
+    .navbar {
+        padding: 15px 0;
     }
 
     .nav-links {
-        display: none;
-        position: absolute;
-        top: 60px;
+        display: none; /* Hide by default */
+        position: fixed;
+        top: 0;
         right: 0;
+        bottom: 0;
         background: #2d2d32;
+        z-index: 999;
         width: 200px;
+        padding-top: 70px;
         flex-direction: column;
         align-items: center;
-        padding: 20px;
-        border-radius: 5px;
+        transition: 0.5s;
+        display: none; /* Hide initially */
     }
 
     .nav-links.show-mobile-menu {
@@ -97,6 +114,18 @@
     }
 
     .nav-links li {
-        margin: 15px 0;
+        display: block;
+        margin: 25px 40px;
+    }
+
+    .menu-icon {
+        display: block;
+        width: 30px;
+        cursor: pointer;
+        margin-right: 30px; /* Increased spacing */
+    }
+
+    .hide-mobile-menu {
+        right: -200px;
     }
 }
