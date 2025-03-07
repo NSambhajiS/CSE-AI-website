@@ -1,0 +1,102 @@
+.logo {
+    width: 100px;
+    height: auto;
+}
+
+.navbar {
+    width: 100%;
+    background: #2d2d32; /* Navbar background */
+    color: #fff;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    padding-right: 20px;
+}
+
+.nav-links li {
+    margin: 0 15px;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    transition: 0.3s ease-in-out;
+}
+
+.nav-links li a:hover {
+    color: #f4a261;
+}
+
+/* Admin and Faculty Login Button Styling */
+.btn {
+    padding: 8px 12px;
+    border-radius: 20px; /* Increased to make buttons rounder */
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Admin Login Button */
+.nav-links li:nth-last-child(2) .btn {
+    background: white; /* Opposite of navbar color */
+    color: #2d2d32; /* Same as navbar background */
+}
+
+/* Faculty Login Button */
+.nav-links li:last-child .btn {
+    background: white; /* Opposite of navbar color */
+    color: #2d2d32; /* Same as navbar background */
+}
+
+/* Button Hover Effect */
+.btn:hover {
+    background: #e76f51;
+    color: white;
+}
+
+/* Menu Icon */
+.menu-icon {
+    display: none;
+    cursor: pointer;
+    width: 35px;
+    margin-right: 20px; /* Increase this value */
+}
+
+/* Mobile View */
+@media (max-width: 937px) {
+    .menu-icon {
+        display: block;
+        margin-right: 30px; /* Increased spacing */
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background: #2d2d32;
+        width: 200px;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        border-radius: 5px;
+    }
+
+    .nav-links.show-mobile-menu {
+        display: flex;
+    }
+
+    .nav-links li {
+        margin: 15px 0;
+    }
+}
