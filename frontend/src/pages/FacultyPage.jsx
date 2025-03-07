@@ -5,7 +5,6 @@ import FacultyLogin from '../components/Auth/FacultyLogin';
 function FacultyPage() {
   return (
     <div>
-      <h1>Faculty Dashboard</h1>
       <FacultyLogin />
     </div>
   );
