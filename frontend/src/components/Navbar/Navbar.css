@@ -3,10 +3,10 @@
     height: auto;
 }
 
-/* Navbar Styling */
+/* Default Solid Navbar */
 .navbar {
     width: 100%;
-    background: #2d2d32; /* Navbar background */
+    background: #2d2d32; /* Default solid background */
     color: #fff;
     padding: 10px 20px;
     position: fixed;
@@ -16,6 +16,22 @@
     align-items: center;
     justify-content: space-between;
     z-index: 1000;
+    transition: background-color 0.3s ease-in-out;
+}
+
+/* Transparent Navbar (Only on Homepage) */
+.navbar.transparent {
+    background: transparent; /* Fully transparent */
+}
+
+/* Navbar becomes solid on scroll (Only on Homepage) */
+.navbar.scrolled {
+    background: rgba(45, 45, 50, 0.9); /* Slight transparency on scroll */
+}
+
+/* Solid Navbar for all other pages */
+.navbar.solid {
+    background: #2d2d32;
 }
 
 /* Navigation Links */
@@ -53,8 +69,8 @@
     display: inline-block;
     border: 2px solid white;
     transition: 0.3s ease-in-out;
-    background: white;   /* Button background */
-    color: #2d2d32!important;      /* Button text color */
+    background: white;
+    color: #2d2d32 !important;
 }
 
 .btn:hover {
@@ -63,13 +79,7 @@
     border-color: #e76f51;
 }
 
-/* Dark Navbar Effect */
-.dark-nav {
-    background: #2d2d32;
-    transition: 0.5s;
-}
-
-/* Menu Icon */
+/* Mobile Menu */
 .menu-icon {
     display: none;
     cursor: pointer;
@@ -77,7 +87,6 @@
     margin-right: 20px;
 }
 
-/* Responsive Adjustments */
 @media (max-width: 1000px) {
     .logo {
         width: 140px;
@@ -94,7 +103,7 @@
     }
 
     .nav-links {
-        display: none; /* Hide by default */
+        display: none;
         position: fixed;
         top: 0;
         right: 0;
@@ -106,7 +115,6 @@
         flex-direction: column;
         align-items: center;
         transition: 0.5s;
-        display: none; /* Hide initially */
     }
 
     .nav-links.show-mobile-menu {
@@ -122,7 +130,7 @@
         display: block;
         width: 30px;
         cursor: pointer;
-        margin-right: 30px; /* Increased spacing */
+        margin-right: 30px;
     }
 
     .hide-mobile-menu {
