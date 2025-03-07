@@ -1,0 +1,114 @@
+.section_padding{
+    padding: 4rem 4rem;
+}
+.footer{
+    background-color: #2d2d32;
+}
+.sb_footer{
+    display: flex;
+    flex-direction: column;
+}
+.sb_footer-links{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 2 rem;
+}
+.sb_footer-links_div{
+    width: 150px;
+    margin: 1rem;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    color: white;
+}
+.socialmedia{
+    display: flex;
+    flex-direction: row;
+}
+.socialmedia img{
+    width: 80%;
+}
+
+.sb_footer-links_div h4{
+    font-size: 14px;
+    line-height: 17px;
+    margin-bottom: 0.9rem;
+    color: white;
+}
+.sb_footer-links_div p{
+    font-size: 12px;
+    line-height: 10px;
+    margin: 0.5rem 0;
+    cursor: pointer;
+    color: white;
+}
+.sb_footer-below{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 0.2rem;
+}
+.sb_footer-copyright p{
+    font-size: 13px;
+    line-height: 15px;
+    color: rgb(175, 175, 179);
+    font-weight: 600;
+}
+@media screen and (max-width:550px){
+    .sb_footer-heading h1{
+        font-size:34px;
+        line-height: 42px;
+    }
+    .sb_footer-links div{
+        margin: 1rem 0;
+    }
+    .sb_footer-below{
+        flex-direction: column;
+        justify-content: left;
+    }
+    .sb_footer-below-links{
+        flex-direction: column;
+    }
+    .sb_footer-below-links{
+        margin-left: 0rem;
+        margin-top: 1rem;
+    }
+}
+.email-icon{
+width: 20px; /* Adjust the size as per your requirement */
+height: auto; /* Maintain aspect ratio */
+background-color: #2d2d32;
+margin-right: 10px;
+}
+.address-line {
+flex: 1; /* Each line takes up half of the row */
+}
+.contct {
+    color: white;
+    line-height: 30px;
+    font-size: 14px;
+}
+.list{
+    list-style-type: none;
+    font-size: 13px;
+    line-height: 25px;
+    cursor: pointer;
+}
+
+@media(max-width:600px){
+    .footer{
+        display: block;
+        text-align: center;
+    }
+    .footer ul li{
+        margin: 10px;
+    }
+    .footer{
+        margin-top: 10px;
+    }
+}
