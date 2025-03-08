@@ -78,6 +78,18 @@
     color: white;
     border-color: #e76f51;
 }
+/* Ensure only login buttons have button styling */
+.nav-links li a:not(.btn) {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    transition: 0.3s ease-in-out;
+    padding: 5px 10px;
+}
+
+.nav-links li a:not(.btn):hover {
+    color: #f4a261;
+}
 
 /* Mobile Menu */
 .menu-icon {

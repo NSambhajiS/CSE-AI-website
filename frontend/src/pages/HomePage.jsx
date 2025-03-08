@@ -1,36 +1,20 @@
-import React, { useEffect } from "react";
-import "./HomePage.css";
+// filepath: /krishna-project/frontend/krishna-frontend/src/pages/FacultyPage.jsx
+import React from 'react';
+import Home from '../components/Home/Home';
+import About from '../components/Home/About'; 
+import HODIntro from '../components/Home/HODIntro';
+import Footer from '../components/Footer/Footer';
 
-const HomePage = () => {
-  useEffect(() => {
-    const handleScroll = () => {
-      const navbar = document.querySelector(".navbar");
-      if (window.scrollY > 50) {
-        navbar.classList.add("scrolled");
-      } else {
-        navbar.classList.remove("scrolled");
-      }
-    };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
+function HomePage() {
   return (
-    <div className="hero container">
-      <div className="hero-text">
-        <h2>
-          Faculty Research & Development Data of CSE(AI) Department of BRACT's VIIT, Pune.
-        </h2>
-        <p>
-          Our highly educated, skilled, and experienced faculties are always here
-          to help you!
-        </p>
-      </div>
+    <div>
+      <Home />
+      <About />
+      <HODIntro />
+      <Footer />
     </div>
   );
-};
+}
 
 export default HomePage;

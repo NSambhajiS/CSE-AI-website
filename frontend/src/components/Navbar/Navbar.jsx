@@ -34,8 +34,6 @@ function Navbar() {
         <li><Link to="/" onClick={() => setMobileMenu(false)}>Home</Link></li>
         <li><Link to="/research" onClick={() => setMobileMenu(false)}>R&D</Link></li>
         <li><Link to="/faculties" onClick={() => setMobileMenu(false)}>Faculties</Link></li>
-        <li><Link to="/about" onClick={() => setMobileMenu(false)}>About</Link></li>
-        <li><Link to="/hod" onClick={() => setMobileMenu(false)}>HoD</Link></li>
         <li><Link to="/admin" onClick={() => setMobileMenu(false)} className="btn">Admin Login</Link></li>
         <li><Link to="/faculty" onClick={() => setMobileMenu(false)} className="btn">Faculty Login</Link></li>
       </ul>
