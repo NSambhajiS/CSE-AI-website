@@ -24,7 +24,7 @@ function App() {
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
           <Route path="/faculty/dashboard" element={<FacultyDashboard />} />
           <Route path="/faculties/*" element={<FacultiesDashboard />} />
-          <Route path="/research" element={<ResearchDashboard />} />
+          <Route path="/research/*" element={<ResearchDashboard />} />
           <Route path="/about" element={<About />} />
           <Route path="/hod" element={<HODIntro />} />
         </Routes>

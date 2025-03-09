@@ -5,8 +5,9 @@
   left: 0;
   width: 180px !important; /* Default width for desktop */
   height: calc(100vh - 60px);
-  background-color: #212529;
+  background-color: #f4f4f4;
   padding-top: 20px;
+  padding: 15px;
   transition: transform 0.3s ease-in-out;
 }
 
@@ -20,12 +21,14 @@
 /* Sidebar Items */
 .sidebar li {
   padding: 8px 20px;
+  margin-bottom: 10px;
 }
 
 /* Sidebar Links */
 .sidebar a {
   text-decoration: none;
-  color: white;
+  color: #333;
+  font-weight: bold;
   font-size: 16px;
   display: block;
   border-radius: 5px;
@@ -34,7 +37,7 @@
 
 /* Hover & Active Effects */
 .sidebar a:hover {
-  background: rgba(255, 255, 255, 0.2);
+  color: #007bff;
 }
 
 .sidebar a.active {

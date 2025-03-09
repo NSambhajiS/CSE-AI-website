@@ -1,8 +1,10 @@
 // filepath: /krishna-project/frontend/krishna-frontend/src/components/Dashboard/ResearchDashboard.jsx
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import axios from 'axios';
-import './Research.css';
+import Sidebar from './Sidebar';
+import CategoryResearch from '../Research/CategoryResearch';
+import './Dashboard.css';
 
 function ResearchDashboard() {
   const [categories, setCategories] = useState([]);
@@ -11,7 +13,6 @@ function ResearchDashboard() {
     const fetchCategories = async () => {
       try {
         const response = await axios.get('/api/categories');
-        console.log('API Response:', response.data); // Debugging API response
         setCategories(response.data);
       } catch (error) {
         console.error('Error fetching categories:', error);
@@ -22,21 +23,13 @@ function ResearchDashboard() {
   }, []);
 
   return (
-    <div className="research-dashboard">
-      <h2>R&D Dashboard</h2>
-      <div className="sidebar">
-        <ul>
-          {categories.map((category) => (
-            <li key={category.id}>
-              <Link to={`/research/${category.name ? category.name.toLowerCase() : ''}`}>
-                {category.name || 'Unknown Category'}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
+    <div className="dashboard">
+      <Sidebar items={categories} basePath="/research" />
       <div className="content">
-        <p>Select a research type to view the work.</p>
+        <Routes>
+          <Route path="/" element={<p className='welcome'>Select a research category to view the work.</p>} />
+          <Route path=":categoryType" element={<CategoryResearch />} />
+        </Routes>
       </div>
     </div>
   );

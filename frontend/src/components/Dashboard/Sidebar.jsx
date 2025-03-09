@@ -15,7 +15,7 @@ function Sidebar({ items, basePath }) {
       {/* Sidebar */}
       <div className={`sidebar ${isOpen ? 'open' : ''}`}>
         <ul>
-          <li className='heading'>Faculties</li>
+          <li className='heading'>Welcome</li>
           {items.map((item) => (
             <li key={item.id}>
               <Link to={`${basePath}/${item.id}`} onClick={() => setIsOpen(false)}>

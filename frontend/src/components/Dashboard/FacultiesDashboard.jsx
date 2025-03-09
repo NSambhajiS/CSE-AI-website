@@ -4,7 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import axios from 'axios';
 import Sidebar from './Sidebar';
 import FacultyResearch from '../Research/FacultyResearch';
-import './Faculties.css';
+import './Dashboard.css';
 
 function FacultiesDashboard() {
   const [faculties, setFaculties] = useState([]);
