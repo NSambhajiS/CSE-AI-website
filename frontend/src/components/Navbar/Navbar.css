@@ -100,8 +100,11 @@
 }
 
 @media (max-width: 1000px) {
+    .navbar {
+        height: 60px;
+    }
     .logo {
-        width: 140px;
+        width: 50px;
     }
 
     .nav-links li {
@@ -112,6 +115,7 @@
 @media (max-width: 937px) {
     .navbar {
         padding: 15px 0;
+        height: 60px;
     }
 
     .nav-links {

@@ -8,6 +8,8 @@ import supabase from './utils/db.js'; // Database connection
 import initializePassport from './utils/auth.js'; // Authentication strategy
 import flash from 'connect-flash'; // Flash messages
 import cors from 'cors';
+import facultyRoutes from './routes/facultyRoutes.js';
+import categoryRoutes from './routes/categoryRoutes.js';
 
 dotenv.config();
 
@@ -22,9 +24,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.use(flash());
 app.use(cors({
-  origin: 'http://localhost:5173', // If using Vite (React)
-  credentials: true, // Important for cookies & sessions
+  origin: 'http://localhost:5173',  
+  credentials: true, 
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
 
 app.use(
   session({
@@ -37,6 +42,9 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use('/api', facultyRoutes); // Use the faculty routes
+app.use('/api', categoryRoutes); // Use the category routes
 
 // Root Route
 app.get('/', (req, res) => res.send('Welcome to Krishna Project'));

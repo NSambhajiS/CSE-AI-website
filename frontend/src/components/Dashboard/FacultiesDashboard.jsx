@@ -1,29 +1,35 @@
 // filepath: /krishna-project/frontend/krishna-frontend/src/components/Dashboard/FacultiesDashboard.jsx
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import axios from 'axios';
+import Sidebar from './Sidebar';
+import FacultyResearch from '../Research/FacultyResearch';
+import './Faculties.css';
 
 function FacultiesDashboard() {
-  // This should be fetched from the backend
-  const faculties = [
-    { id: 1, name: 'Faculty 1' },
-    { id: 2, name: 'Faculty 2' },
-    // Add more faculties as needed
-  ];
+  const [faculties, setFaculties] = useState([]);
+
+  useEffect(() => {
+    const fetchFaculties = async () => {
+      try {
+        const response = await axios.get('/api/faculties');
+        setFaculties(response.data);
+      } catch (error) {
+        console.error('Error fetching faculties:', error);
+      }
+    };
+
+    fetchFaculties();
+  }, []);
 
   return (
-    <div>
-      <h2>Faculties Dashboard</h2>
-      <div className="sidebar">
-        <ul>
-          {faculties.map((faculty) => (
-            <li key={faculty.id}>
-              <Link to={`/faculties/${faculty.id}`}>{faculty.name}</Link>
-            </li>
-          ))}
-        </ul>
-      </div>
+    <div className="dashboard">
+      <Sidebar items={faculties} basePath="/faculties" />
       <div className="content">
-        <p>Select a faculty to view their work.</p>
+        <Routes>
+          <Route path="/" element={<p className='welcome'>Select a faculty to view their work.</p>} />
+          <Route path=":facultyId" element={<FacultyResearch />} />
+        </Routes>
       </div>
     </div>
   );

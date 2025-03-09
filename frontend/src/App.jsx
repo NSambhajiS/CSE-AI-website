@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import AdminPage from './pages/AdminPage';
 import FacultyPage from './pages/FacultyPage';
-import ResearchPage from './pages/ResearchPage';
 import AdminDashboard from './components/Dashboard/AdminDashboard';
 import FacultyDashboard from './components/Dashboard/FacultyDashboard';
 import FacultiesDashboard from './components/Dashboard/FacultiesDashboard';
@@ -22,10 +21,9 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/admin" element={<AdminPage />} />
           <Route path="/faculty" element={<FacultyPage />} />
-          <Route path="/research" element={<ResearchPage />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
           <Route path="/faculty/dashboard" element={<FacultyDashboard />} />
-          <Route path="/faculties" element={<FacultiesDashboard />} />
+          <Route path="/faculties/*" element={<FacultiesDashboard />} />
           <Route path="/research" element={<ResearchDashboard />} />
           <Route path="/about" element={<About />} />
           <Route path="/hod" element={<HODIntro />} />
