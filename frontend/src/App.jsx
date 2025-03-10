@@ -12,6 +12,7 @@ import About from './components/Home/About';
 import HODIntro from './components/Home/HODIntro';
 import Navbar from './components/Navbar/Navbar';
 
+
 function App() {
   return (
     <Router>
@@ -21,7 +22,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/admin" element={<AdminPage />} />
           <Route path="/faculty" element={<FacultyPage />} />
-          <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route path="/admin/dashboard/*" element={<AdminDashboard />} />
           <Route path="/faculty/dashboard" element={<FacultyDashboard />} />
           <Route path="/faculties/*" element={<FacultiesDashboard />} />
           <Route path="/research/*" element={<ResearchDashboard />} />

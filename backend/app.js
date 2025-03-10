@@ -10,6 +10,7 @@ import flash from 'connect-flash'; // Flash messages
 import cors from 'cors';
 import facultyRoutes from './routes/facultyRoutes.js';
 import categoryRoutes from './routes/categoryRoutes.js';
+import adminRoutes from './routes/adminRoutes.js'; // Import the admin routes
 
 dotenv.config();
 
@@ -45,6 +46,7 @@ app.use(passport.session());
 
 app.use('/api', facultyRoutes); // Use the faculty routes
 app.use('/api', categoryRoutes); // Use the category routes
+app.use('/api', adminRoutes); // Use the admin routes
 
 // Root Route
 app.get('/', (req, res) => res.send('Welcome to Krishna Project'));
