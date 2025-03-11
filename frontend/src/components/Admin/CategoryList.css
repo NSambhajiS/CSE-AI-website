@@ -1,0 +1,80 @@
+/* Category container styles */
+.category-container {
+    margin: 20px auto; /* Center the container */
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fafafa;
+    max-width: 1000px; /* Limit container width */
+  }
+  
+  .category-heading {
+    font-size: 24px;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  
+  /* Card list styles */
+  .card-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center; /* Center the cards horizontally */
+  }
+  
+  /* Individual card styles */
+  .category-card {
+    width: 180px;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.2s ease;
+  }
+  
+  .category-card:hover {
+    transform: translateY(-4px);
+    background-color: #f4f4f4;
+  }
+  
+  .category-card p {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+  }
+  
+  /* ✅ Responsive Styles */
+  @media (max-width: 768px) {
+    .category-container {
+      padding: 16px;
+      max-width: 90%; /* Reduce container width on smaller screens */
+    }
+  
+    .category-card {
+      width: 150px; /* Smaller card size on smaller screens */
+      padding: 10px;
+    }
+  
+    .category-heading {
+      font-size: 20px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .category-container {
+      padding: 12px;
+      max-width: 100%; /* Use full width for very small screens */
+    }
+  
+    .category-card {
+      width: 100%; /* Cards take full width on very small screens */
+      padding: 8px;
+    }
+  
+    .category-heading {
+      font-size: 18px;
+    }
+  }
+  
