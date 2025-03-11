@@ -1,9 +1,12 @@
 // filepath: /krishna-project/backend/routes/facultyRoutes.js
 import express from 'express';
 import supabase from '../utils/db.js';
+import bcrypt from 'bcrypt';
 
 const router = express.Router();
+const saltRounds = 10;
 
+// Fetch all faculties
 router.get('/faculties', async (req, res) => {
   try {
     const { data, error } = await supabase.from('faculties').select('*');
@@ -51,4 +54,34 @@ router.get('/faculties/:facultyId/work', async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+
+// Add a new faculty
+router.post('/faculties', async (req, res) => {
+  const { name, email, password } = req.body;
+  try {
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
+    const { data, error } = await supabase.from('faculties').insert([{ name, email, password: hashedPassword }]);
+    if (error) {
+      return res.status(500).json({ error: error.message });
+    }
+    res.status(201).json(data);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Remove a faculty
+router.delete('/faculties/:facultyId', async (req, res) => {
+  const { facultyId } = req.params;
+  try {
+    const { data, error } = await supabase.from('faculties').delete().eq('id', facultyId);
+    if (error) {
+      return res.status(500).json({ error: error.message });
+    }
+    res.status(200).json(data);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 export default router;
