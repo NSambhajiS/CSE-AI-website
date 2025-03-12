@@ -8,10 +8,13 @@ function CategoryList() {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get('/api/categories');
+        const token = localStorage.getItem('token');
+        const response = await axios.get('/api/categories', {
+          headers: { Authorization: `Bearer ${token}` }
+        });
         setCategories(response.data);
       } catch (error) {
-        console.error('Error fetching categories:', error);
+        console.error('Error fetching categories:', error.response ? error.response.data : error.message);
       }
     };
 

@@ -1,6 +1,7 @@
 import passport from 'passport';
 import { Strategy as LocalStrategy } from 'passport-local';
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 import supabase from './db.js';
 
 const initializePassport = () => {
@@ -20,8 +21,12 @@ const initializePassport = () => {
         const isMatch = await bcrypt.compare(password, admin.password);
         if (!isMatch) return done(null, false, { message: 'Invalid email or password' });
 
-        return done(null, admin);
+        // Generate JWT token
+        const token = jwt.sign({ id: admin.id, role: 'admin' }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+        return done(null, { ...admin, token });
       } catch (err) {
+        console.error('Error during admin authentication:', err);
         return done(err);
       }
     })
@@ -43,8 +48,12 @@ const initializePassport = () => {
         const isMatch = await bcrypt.compare(password, faculty.password);
         if (!isMatch) return done(null, false, { message: 'Invalid email or password' });
 
-        return done(null, faculty);
+        // Generate JWT token
+        const token = jwt.sign({ id: faculty.id, role: 'faculty' }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+        return done(null, { ...faculty, token });
       } catch (err) {
+        console.error('Error during faculty authentication:', err);
         return done(err);
       }
     })
@@ -77,6 +86,7 @@ const initializePassport = () => {
 
       return done(null, user);
     } catch (err) {
+      console.error('Error during user deserialization:', err);
       done(err);
     }
   });

@@ -17,14 +17,15 @@ function AdminLogin() {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
         },
-        credentials: 'include',
         body: JSON.stringify({ email, password }),
       });
 
       const data = await response.json();
       console.log("Server Response:", data);
 
-      if (response.ok && data.success) {
+      if (response.ok && data.token) {
+        // Store the JWT token in localStorage
+        localStorage.setItem('token', data.token);
         navigate('/admin/dashboard'); 
       } else {
         alert(data.message);

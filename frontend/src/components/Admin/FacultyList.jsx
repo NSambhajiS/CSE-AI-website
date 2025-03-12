@@ -10,7 +10,10 @@ function FacultyList() {
   useEffect(() => {
     const fetchFaculties = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/api/faculties');
+        const token = localStorage.getItem('token');
+        const response = await axios.get('http://localhost:3000/api/faculties', {
+          headers: { Authorization: `Bearer ${token}` }
+        });
         setFaculties(response.data);
       } catch (error) {
         console.error('Error fetching faculties:', error);
@@ -22,7 +25,10 @@ function FacultyList() {
 
   const handleRemoveFaculty = async (facultyId) => {
     try {
-      await axios.delete(`/api/faculties/${facultyId}`);
+      const token = localStorage.getItem('token');
+      await axios.delete(`/api/faculties/${facultyId}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
       setFaculties(faculties.filter((faculty) => faculty.id !== facultyId));
     } catch (error) {
       console.error('Error removing faculty:', error);
@@ -32,24 +38,27 @@ function FacultyList() {
   const handleAddFaculty = async (e) => {
     e.preventDefault();
     try {
+      const token = localStorage.getItem('token');
       const response = await axios.post(
         'http://localhost:3000/api/faculties',
         newFaculty,
-        { headers: { 'Content-Type': 'application/json' } }
+        { headers: { 
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
+          } 
+        }
       );
-  
+
       if (response.data) {
-        setFaculties([...faculties, response.data]); // ✅ Update state directly
+        setFaculties([...faculties, response.data]);
       }
-  
+
       setShowForm(false);
       setNewFaculty({ name: '', email: '', password: '' });
     } catch (error) {
       console.error('Error adding faculty:', error);
     }
   };
-  
-
 
   return (
     <div className="admin-container">

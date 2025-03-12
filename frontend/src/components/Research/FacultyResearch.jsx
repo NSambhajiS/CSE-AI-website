@@ -11,7 +11,7 @@ function FacultyResearch() {
   useEffect(() => {
     const fetchFacultyName = async () => {
       try {
-        const response = await axios.get(`/api/faculties/${facultyId}`);
+        const response = await axios.get(`http://localhost:3000/api/faculties/${facultyId}`);
         setFacultyName(response.data.name);
       } catch (error) {
         console.error('Error fetching faculty name:', error);
@@ -20,7 +20,7 @@ function FacultyResearch() {
 
     const fetchWork = async () => {
       try {
-        const response = await axios.get(`/api/faculties/${facultyId}/work`);
+        const response = await axios.get(`http://localhost:3000/api/faculties/${facultyId}/work`);
         setWork(response.data);
       } catch (error) {
         console.error('Error fetching faculty work:', error);

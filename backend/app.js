@@ -31,7 +31,6 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
-
 app.use(
   session({
     secret: process.env.SESSION_SECRET || 'supersecret',
@@ -54,12 +53,18 @@ app.get('/', (req, res) => res.send('Welcome to Krishna Project'));
 // ✅ Admin Login Route
 app.post('/admin/login', async (req, res, next) => {
   passport.authenticate('admin-local', async (err, user, info) => {
-    if (err) return res.status(500).json({ success: false, message: 'Server error' });
+    if (err) {
+      console.error('Error during admin login:', err);
+      return res.status(500).json({ success: false, message: 'Server error' });
+    }
     if (!user) return res.status(400).json({ success: false, message: info.message });
 
     req.login(user, (err) => {
-      if (err) return res.status(500).json({ success: false, message: 'Login failed' });
-      res.json({ success: true, message: 'Login successful' });
+      if (err) {
+        console.error('Error during admin login:', err);
+        return res.status(500).json({ success: false, message: 'Login failed' });
+      }
+      res.json({ success: true, message: 'Login successful', token: user.token }); // Return JWT token
     });
   })(req, res, next);
 });
@@ -67,12 +72,18 @@ app.post('/admin/login', async (req, res, next) => {
 // ✅ Faculty Login Route
 app.post('/faculty/login', async (req, res, next) => {
   passport.authenticate('faculty-local', async (err, user, info) => {
-    if (err) return res.status(500).json({ success: false, message: 'Server error' });
+    if (err) {
+      console.error('Error during faculty login:', err);
+      return res.status(500).json({ success: false, message: 'Server error' });
+    }
     if (!user) return res.status(400).json({ success: false, message: info.message });
 
     req.login(user, (err) => {
-      if (err) return res.status(500).json({ success: false, message: 'Login failed' });
-      res.json({ success: true, message: 'Login successful' });
+      if (err) {
+        console.error('Error during faculty login:', err);
+        return res.status(500).json({ success: false, message: 'Login failed' });
+      }
+      res.json({ success: true, message: 'Login successful', token: user.token }); // Return JWT token
     });
   })(req, res, next);
 });

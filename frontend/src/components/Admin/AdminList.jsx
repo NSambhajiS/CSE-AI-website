@@ -10,7 +10,10 @@ function AdminList() {
   useEffect(() => {
     const fetchAdmins = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/admins");  // ✅ Fixed URL
+        const token = localStorage.getItem('token');
+        const response = await axios.get("http://localhost:3000/api/admins", {
+          headers: { Authorization: `Bearer ${token}` }
+        });
         setAdmins(response.data);
       } catch (error) {
         console.error("Error fetching admins:", error.response ? error.response.data : error.message);
@@ -22,7 +25,10 @@ function AdminList() {
 
   const handleRemoveAdmin = async (adminId) => {
     try {
-      await axios.delete(`http://localhost:3000/api/admins/${adminId}`);  // ✅ Fixed URL
+      const token = localStorage.getItem('token');
+      await axios.delete(`http://localhost:3000/api/admins/${adminId}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
       setAdmins(admins.filter((admin) => admin.id !== adminId));
     } catch (error) {
       console.error("Error removing admin:", error.response ? error.response.data : error.message);
@@ -32,8 +38,12 @@ function AdminList() {
   const handleAddAdmin = async (e) => {
     e.preventDefault();
     try {
+      const token = localStorage.getItem('token');
       const response = await axios.post("http://localhost:3000/api/admins", newAdmin, {
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
+        },
       });
 
       setAdmins([...admins, response.data]);

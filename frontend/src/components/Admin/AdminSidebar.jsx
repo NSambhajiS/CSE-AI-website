@@ -20,6 +20,10 @@ function AdminSidebar({ items, onSelect }) {
               <a href="#" className="sidebar-link">{item.name}</a>
             </li>
           ))}
+          {/* Add Logout Option */}
+          <li onClick={() => onSelect('logout')}>
+            <a href="#" className="sidebar-link">Logout</a>
+          </li>
         </ul>
       </div>
     </>

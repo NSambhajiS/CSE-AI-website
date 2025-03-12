@@ -13,24 +13,25 @@ function FacultyLogin() {
       const response = await fetch('http://localhost:3000/faculty/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        credentials: 'include',
         body: JSON.stringify({ email, password }),
       });
 
       const data = await response.json();
 
-      if (response.ok && data.success) {
+      if (response.ok && data.token) {
+        // Store the JWT token in localStorage
+        localStorage.setItem('token', data.token);
         navigate('/faculty/dashboard');
       } else {
         alert(data.message);
       }
-    } catch {
+    } catch (error) {
+      console.error("Error during login:", error);
       alert('An error occurred. Please try again.');
     }
   };
 
   return (
-
     <div className="auth-container">
       <div className="auth-box">
         <h2>Faculty Login</h2>

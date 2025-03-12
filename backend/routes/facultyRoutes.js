@@ -2,11 +2,12 @@
 import express from 'express';
 import supabase from '../utils/db.js';
 import bcrypt from 'bcrypt';
+import authenticateToken from '../middleware/authMiddleware.js'; // Import the middleware
 
 const router = express.Router();
 const saltRounds = 10;
 
-// Fetch all faculties
+// Fetch all faculties (public route)
 router.get('/faculties', async (req, res) => {
   try {
     const { data, error } = await supabase.from('faculties').select('*');
@@ -19,6 +20,7 @@ router.get('/faculties', async (req, res) => {
   }
 });
 
+// Fetch a specific faculty (public route)
 router.get('/faculties/:facultyId', async (req, res) => {
   const { facultyId } = req.params;
   try {
@@ -32,6 +34,21 @@ router.get('/faculties/:facultyId', async (req, res) => {
   }
 });
 
+// Fetch research data for a specific faculty (protected route)
+router.get('/faculties/:facultyId/research', authenticateToken, async (req, res) => {
+  const { facultyId } = req.params;
+  try {
+    const { data, error } = await supabase.from('research').select('*').eq('faculty_id', facultyId);
+    if (error) {
+      return res.status(500).json({ error: error.message });
+    }
+    res.status(200).json(data);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Fetch work for a specific faculty (public route)
 router.get('/faculties/:facultyId/work', async (req, res) => {
   const { facultyId } = req.params;
   try {
@@ -56,7 +73,7 @@ router.get('/faculties/:facultyId/work', async (req, res) => {
 });
 
 // Add a new faculty
-router.post('/faculties', async (req, res) => {
+router.post('/faculties', authenticateToken, async (req, res) => { // Add authenticateToken middleware
   const { name, email, password } = req.body;
   try {
     const hashedPassword = await bcrypt.hash(password, saltRounds);
@@ -71,7 +88,7 @@ router.post('/faculties', async (req, res) => {
 });
 
 // Remove a faculty
-router.delete('/faculties/:facultyId', async (req, res) => {
+router.delete('/faculties/:facultyId', authenticateToken, async (req, res) => { // Add authenticateToken middleware
   const { facultyId } = req.params;
   try {
     const { data, error } = await supabase.from('faculties').delete().eq('id', facultyId);
