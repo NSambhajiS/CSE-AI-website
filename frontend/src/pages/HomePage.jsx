@@ -3,7 +3,7 @@ import React from 'react';
 import Home from '../components/Home/Home';
 import About from '../components/Home/About'; 
 import HODIntro from '../components/Home/HODIntro';
-import Footer from '../components/Footer/Footer';
+import Footer from '../components/Home/Footer';
 
 
 function HomePage() {

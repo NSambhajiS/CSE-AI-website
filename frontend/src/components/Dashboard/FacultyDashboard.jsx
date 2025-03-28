@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import FacultySidebar from '../Faculty/FacultySidebar';
+import Sidebar from './Sidebar'; // Updated import
 import FacultyProfile from '../Faculty/FacultyProfile';
 import CategoryList from '../Faculty/CategoryList';
 import './Dashboard.css';
@@ -23,7 +23,7 @@ function FacultyDashboard() {
           key: `category-${category.id}`,
         }));
         setSidebarItems([
-          { id: 'profile', name: 'Profile', key: 'profile' }, // Add Profile to the sidebar
+          { id: 'profile', name: 'Profile', key: 'profile' },
           ...categoryItems,
           { id: 'logout', name: 'Logout', key: 'logout' },
         ]);
@@ -41,7 +41,7 @@ function FacultyDashboard() {
   };
 
   const componentMap = {
-    profile: <FacultyProfile />, // Map Profile to FacultyProfile component
+    profile: <FacultyProfile />,
     logout: handleLogout,
   };
 
@@ -61,7 +61,7 @@ function FacultyDashboard() {
 
   return (
     <div className="dashboard">
-      <FacultySidebar items={sidebarItems} onSelect={handleSelect} />
+      <Sidebar items={sidebarItems} onSelect={handleSelect} heading="Faculty Panel" />
       <div className="content">
         {componentMap[selectedTab] || <p>Select an option from the sidebar.</p>}
       </div>

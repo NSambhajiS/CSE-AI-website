@@ -59,9 +59,13 @@
   z-index: 1000;
 }
 
-.heading{
-  font-size: 25px;
+/* Sidebar Heading */
+.heading {
+  font-size: 20px; /* Adjusted size to fit on one line */
   font-weight: bold;
+  margin-bottom: 10px;
+  list-style: none; /* Removes the point before the heading */
+  padding: 0; /* Removes any extra padding */
 }
 /* Responsive - Mobile View */
 @media (max-width: 768px) {

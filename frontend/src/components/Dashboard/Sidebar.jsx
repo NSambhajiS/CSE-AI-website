@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Sidebar.css';
 
-function Sidebar({ items, basePath }) {
+function Sidebar({ items, onSelect, basePath, heading }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -14,13 +14,19 @@ function Sidebar({ items, basePath }) {
 
       {/* Sidebar */}
       <div className={`sidebar ${isOpen ? 'open' : ''}`}>
+        {heading && <li className="heading">{heading}</li>}
         <ul>
-          <li className='heading'>Welcome</li>
           {items.map((item) => (
             <li key={item.id}>
-              <Link to={`${basePath}/${item.id}`} onClick={() => setIsOpen(false)}>
-                {item.name}
-              </Link>
+              {basePath ? (
+                <Link to={`${basePath}/${item.id}`} onClick={() => setIsOpen(false)}>
+                  {item.name}
+                </Link>
+              ) : (
+                <a href="#" onClick={() => onSelect(item.key)}>
+                  {item.name}
+                </a>
+              )}
             </li>
           ))}
         </ul>

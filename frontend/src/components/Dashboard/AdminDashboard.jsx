@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import AdminSidebar from "../Admin/AdminSidebar";
+import Sidebar from "./Sidebar"; // Updated import
 import AdminList from "../Admin/AdminList";
 import FacultyList from "../Admin/FacultyList";
 import CategoryList from "../Admin/CategoryList";
@@ -13,26 +13,23 @@ function AdminDashboard() {
     { id: 2, name: "Faculties", key: "faculties" },
     { id: 3, name: "Categories", key: "categories" },
     { id: 4, name: "Profile", key: "profile" },
+    { id: 5, name: "Logout", key: "logout" },
   ];
 
   const [selectedTab, setSelectedTab] = useState(null);
   const navigate = useNavigate();
 
-  // Add logout function
   const handleLogout = () => {
     localStorage.removeItem('token');
     navigate('/admin/login');
   };
-  
-  // Map key to the correct component
+
   const componentMap = {
     admins: <AdminList />,
     faculties: <FacultyList />,
     categories: <CategoryList />,
     profile: <AdminProfile onLogout={handleLogout} />,
   };
-
-  
 
   const handleSelect = (key) => {
     if (key === 'logout') {
@@ -44,7 +41,7 @@ function AdminDashboard() {
 
   return (
     <div className="dashboard">
-      <AdminSidebar items={sidebarItems} onSelect={handleSelect} />
+      <Sidebar items={sidebarItems} onSelect={handleSelect} heading="Admin Panel" />
       <div className="content">
         {componentMap[selectedTab] || <p>Select an option from the sidebar.</p>}
       </div>

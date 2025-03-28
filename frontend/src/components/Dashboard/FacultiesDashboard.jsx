@@ -1,4 +1,3 @@
-// filepath: /krishna-project/frontend/krishna-frontend/src/components/Dashboard/FacultiesDashboard.jsx
 import React, { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import axios from 'axios';
@@ -13,7 +12,12 @@ function FacultiesDashboard() {
     const fetchFaculties = async () => {
       try {
         const response = await axios.get('/api/faculties');
-        setFaculties(response.data);
+        setFaculties(
+          response.data.map((faculty) => ({
+            id: faculty.id,
+            name: faculty.name,
+          }))
+        );
       } catch (error) {
         console.error('Error fetching faculties:', error);
       }
@@ -24,10 +28,13 @@ function FacultiesDashboard() {
 
   return (
     <div className="dashboard">
-      <Sidebar items={faculties} basePath="/faculties" />
+      <Sidebar items={faculties} basePath="/faculties" heading="Faculty Members" />
       <div className="content">
         <Routes>
-          <Route path="/" element={<p className='welcome'>Select a faculty to view their work.</p>} />
+          <Route
+            path="/"
+            element={<p className="welcome">Select a faculty to view their work.</p>}
+          />
           <Route path=":facultyId" element={<FacultyResearch />} />
         </Routes>
       </div>

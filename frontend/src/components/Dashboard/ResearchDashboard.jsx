@@ -1,4 +1,3 @@
-// filepath: /krishna-project/frontend/krishna-frontend/src/components/Dashboard/ResearchDashboard.jsx
 import React, { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import axios from 'axios';
@@ -13,7 +12,12 @@ function ResearchDashboard() {
     const fetchCategories = async () => {
       try {
         const response = await axios.get('/api/categories');
-        setCategories(response.data);
+        setCategories(
+          response.data.map((category) => ({
+            id: category.id,
+            name: category.name,
+          }))
+        );
       } catch (error) {
         console.error('Error fetching categories:', error);
       }
@@ -24,10 +28,13 @@ function ResearchDashboard() {
 
   return (
     <div className="dashboard">
-      <Sidebar items={categories} basePath="/research" />
+      <Sidebar items={categories} basePath="/research" heading="Research Categories" />
       <div className="content">
         <Routes>
-          <Route path="/" element={<p className='welcome'>Select a research category to view the work.</p>} />
+          <Route
+            path="/"
+            element={<p className="welcome">Select a research category to view the work.</p>}
+          />
           <Route path=":categoryType" element={<CategoryResearch />} />
         </Routes>
       </div>
