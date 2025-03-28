@@ -11,6 +11,7 @@ import cors from 'cors';
 import facultyRoutes from './routes/facultyRoutes.js';
 import categoryRoutes from './routes/categoryRoutes.js';
 import adminRoutes from './routes/adminRoutes.js'; // Import the admin routes
+import jwt from 'jsonwebtoken';
 
 dotenv.config();
 
@@ -78,15 +79,14 @@ app.post('/faculty/login', async (req, res, next) => {
     }
     if (!user) return res.status(400).json({ success: false, message: info.message });
 
-    req.login(user, (err) => {
-      if (err) {
-        console.error('Error during faculty login:', err);
-        return res.status(500).json({ success: false, message: 'Login failed' });
-      }
-      res.json({ success: true, message: 'Login successful', token: user.token }); // Return JWT token
+    const token = jwt.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    res.json({ 
+      success: true, 
+      message: 'Login successful', 
+      token, 
+      facultyId: user.id // Include facultyId in the response
     });
   })(req, res, next);
 });
-
 // Start Server
 app.listen(port, () => console.log(`Server running on port ${port}`));

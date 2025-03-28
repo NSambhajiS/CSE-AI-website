@@ -1,0 +1,85 @@
+/* Sidebar Container */
+.faculty-sidebar {
+    position: fixed;
+    top: 120px; /* Adjust based on navbar height */
+    left: 0;
+    width: 180px !important; /* Default width for desktop */
+    height: calc(100vh - 60px);
+    background-color: #f4f4f4;
+    padding-top: 20px;
+    padding: 15px;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  /* Sidebar List */
+  .faculty-sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* Sidebar Items */
+  .faculty-sidebar li {
+    padding: 8px 20px;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+  
+  /* Sidebar Links */
+  .faculty-sidebar a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    font-size: 16px;
+    display: block;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+  }
+  
+  /* Hover & Active Effects */
+  .faculty-sidebar li:hover {
+    background: rgba(0, 123, 255, 0.1);
+    color: #007bff;
+  }
+  
+  .faculty-sidebar a.active {
+    background: rgba(255, 255, 255, 0.3);
+    font-weight: bold;
+  }
+  
+  /* Sidebar Toggle Button */
+  .faculty-sidebar-toggle {
+    display: none; /* Hidden on desktop */
+    position: fixed;
+    left: 15px;
+    background: #212529;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 1000;
+  }
+  
+  .faculty-heading {
+    font-size: 25px;
+    font-weight: bold;
+  }
+  
+  /* Responsive - Mobile View */
+  @media (max-width: 768px) {
+    .faculty-sidebar {
+      width: 100px;
+      top: 150px; /* Adjust based on navbar height */
+      transform: translateX(-100%); /* Hide sidebar initially */
+    }
+  
+    .faculty-sidebar.open {
+      transform: translateX(0); /* Show sidebar when toggled */
+    }
+  
+    .faculty-sidebar-toggle {
+      display: block; /* Show toggle button */
+    }
+  }
+  

@@ -12,15 +12,12 @@ import HODIntro from './components/Home/HODIntro';
 import Navbar from './components/Navbar/Navbar';
 import AdminLogin from './components/Auth/AdminLogin';
 import FacultyLogin from './components/Auth/FacultyLogin';
+import FacultyProfile from './components/Faculty/FacultyProfile';
+import ProtectedRoute from './components/Auth/ProtectedRoute';
 
 // Function to check if user is authenticated
 const isAuthenticated = () => {
   return !!localStorage.getItem('token');
-};
-
-// Protected Route Component
-const ProtectedRoute = ({ element }) => {
-  return isAuthenticated() ? element : <Navigate to="/admin/login" />;
 };
 
 function App() {
@@ -32,10 +29,11 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/admin" element={<AdminPage />} />
           <Route path="/faculty" element={<FacultyPage />} />
-          <Route path="/admin/login" element={<AdminLogin />} /> {/* Add Admin Login Route */}
-          <Route path="/faculty/login" element={<FacultyLogin />} /> {/* Add Faculty Login Route */}
-          <Route path="/admin/dashboard/*" element={<ProtectedRoute element={<AdminDashboard />} />} /> {/* Protect Admin Dashboard */}
-          <Route path="/faculty/dashboard" element={<ProtectedRoute element={<FacultyDashboard />} />} /> {/* Protect Faculty Dashboard */}
+          <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/faculty/login" element={<FacultyLogin />} />
+          <Route path="/admin/dashboard/*" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
+          <Route path="/faculty/dashboard/*" element={<ProtectedRoute><FacultyDashboard /></ProtectedRoute>} />
+          <Route path="/faculty/profile" element={<ProtectedRoute><FacultyProfile /></ProtectedRoute>} />
           <Route path="/faculties/*" element={<FacultiesDashboard />} />
           <Route path="/research/*" element={<ResearchDashboard />} />
           <Route path="/about" element={<About />} />

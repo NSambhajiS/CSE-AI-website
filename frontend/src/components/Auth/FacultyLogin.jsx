@@ -15,18 +15,18 @@ function FacultyLogin() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
       });
-
+  
       const data = await response.json();
-
+  
       if (response.ok && data.token) {
-        // Store the JWT token in localStorage
         localStorage.setItem('token', data.token);
+        localStorage.setItem('facultyId', data.facultyId);
         navigate('/faculty/dashboard');
       } else {
         alert(data.message);
       }
     } catch (error) {
-      console.error("Error during login:", error);
+      console.error('Error during login:', error);
       alert('An error occurred. Please try again.');
     }
   };

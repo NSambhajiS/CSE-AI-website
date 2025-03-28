@@ -101,4 +101,48 @@ router.delete('/faculties/:facultyId', authenticateToken, async (req, res) => { 
   }
 });
 
+// Fetch faculty profile (protected route)
+router.get('/faculty/profile', authenticateToken, async (req, res) => {
+  const facultyId = req.user.id; // Get faculty ID from the decoded token
+
+  try {
+    const { data, error } = await supabase.from('faculties').select('*').eq('id', facultyId).single();
+    if (error || !data) {
+      return res.status(404).json({ error: "Faculty profile not found" });
+    }
+    res.status(200).json(data);
+  } catch (err) {
+    console.error('Error fetching faculty profile:', err);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+router.put('/faculty/profile', authenticateToken, async (req, res) => {
+  const facultyId = req.user.id; // Get faculty ID from token
+  const { name, email, password } = req.body;
+
+  try {
+    const updates = { name, email };
+    if (password) {
+      const hashedPassword = await bcrypt.hash(password, 10);
+      updates.password = hashedPassword;
+    }
+
+    const { data, error } = await supabase
+      .from('faculties')
+      .update(updates)
+      .eq('id', facultyId)
+      .select();
+
+    if (error) {
+      return res.status(500).json({ error: error.message });
+    }
+
+    res.status(200).json(data[0]); // Return updated profile
+  } catch (err) {
+    console.error('Error updating faculty profile:', err);
+    res.status(500).json({ error: 'Failed to update profile' });
+  }
+});
+
 export default router;
