@@ -1,6 +1,6 @@
-# Krishna Project
+# CSE(AI) Faculties Research & Development Data Wesite
 
-The Krishna Project is a comprehensive web application designed to manage and showcase the research and development data of the CSE(AI) department. It includes a **frontend** built with React and Vite, and a **backend** powered by Node.js, Express, and Supabase. The project supports dynamic rendering of data, user authentication, and role-based dashboards for admins and faculty members.
+The CSE(AI) Faculties Research & Development Data Wesited to manage and showcase the research and development data of the CSE(AI) department. It includes a **frontend** built with React and Vite, and a **backend** powered by Node.js, Express, and Supabase. The project supports dynamic rendering of data, user authentication, and role-based dashboards for admins and faculty members.
 
 ---
 
@@ -17,7 +17,7 @@ The Krishna Project is a comprehensive web application designed to manage and sh
 ---
 
 ## Project Structure
-krishna-project/ ├── backend/ # Backend code (Node.js, Express, Supabase) │ ├── routes/ # API route handlers │ ├── utils/ # Utility functions (DB connection, authentication) │ ├── middleware/ # Middleware for authentication │ ├── server.js # Main server file │ ├── app.js # Express app configuration │ └── package.json # Backend dependencies ├── frontend/ # Frontend code (React, Vite) │ ├── src/ # React source files │ │ ├── components/ # Reusable React components │ │ ├── pages/ # Page-level components │ │ ├── App.jsx # Main React app │ │ └── main.jsx # React entry point │ ├── public/ # Static assets │ ├── vite.config.js # Vite configuration │ └── package.json # Frontend dependencies └── README.md # Project documentation
+R&D-project/ ├── backend/ # Backend code (Node.js, Express, Supabase) │ ├── routes/ # API route handlers │ ├── utils/ # Utility functions (DB connection, authentication) │ ├── middleware/ # Middleware for authentication │ ├── server.js # Main server file │ ├── app.js # Express app configuration │ └── package.json # Backend dependencies ├── frontend/ # Frontend code (React, Vite) │ ├── src/ # React source files │ │ ├── components/ # Reusable React components │ │ ├── pages/ # Page-level components │ │ ├── App.jsx # Main React app │ │ └── main.jsx # React entry point │ ├── public/ # Static assets │ ├── vite.config.js # Vite configuration │ └── package.json # Frontend dependencies └── README.md # Project documentation
 
 
 ---
