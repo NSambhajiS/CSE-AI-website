@@ -1,4 +1,3 @@
-// Filepath: /krishna-project/backend/app.js
 import express from 'express';
 import bodyParser from 'body-parser';
 import session from 'express-session';
@@ -49,7 +48,7 @@ app.use('/api', categoryRoutes); // Use the category routes
 app.use('/api', adminRoutes); // Use the admin routes
 
 // Root Route
-app.get('/', (req, res) => res.send('Welcome to Krishna Project'));
+app.get('/', (req, res) => res.send('Welcome to CSE(AI) website'));
 
 // ✅ Admin Login Route
 app.post('/admin/login', async (req, res, next) => {

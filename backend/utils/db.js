@@ -1,4 +1,3 @@
-// filepath: /krishna-project/backend/utils/db.js
 import { createClient } from '@supabase/supabase-js';
 import dotenv from 'dotenv';
 
